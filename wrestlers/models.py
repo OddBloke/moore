@@ -6,6 +6,7 @@ class GroupManager(models.Manager):
     def filter_wrestlers(self, l):
         return self.filter(wrestlers=Wrestler.objects.filter(id__in=[w.id for w in l]))
 
+
 class Group(models.Model):
 
     objects = GroupManager()
