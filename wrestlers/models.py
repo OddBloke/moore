@@ -13,7 +13,13 @@ class Group(models.Model):
     wrestlers = models.ManyToManyField("Wrestler")
     name = models.CharField(max_length=128)
 
+    def __unicode__(self):
+        return self.name if self.name else "Unnamed Group"
+
 
 class Wrestler(models.Model):
 
     name = models.CharField(max_length=128)
+
+    def __unicode__(self):
+        return self.name
