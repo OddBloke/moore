@@ -23,7 +23,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^',direct_to_template, {'template':'index.html'}),
+    url(r'^$',direct_to_template, {'template':'index.html'}),
     # Examples:
     # url(r'^$', 'moore.views.home', name='home'),
     # url(r'^moore/', include('moore.foo.urls')),
