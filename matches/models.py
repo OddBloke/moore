@@ -32,5 +32,8 @@ class Match(Review):
     winner = models.ForeignKey(WrestlingEntity, related_name="won_matches",
                                null=True, blank=True)
 
-    def __unicode__(self):
+    def vs_string(self):
         return " vs. ".join([p.name for p in self.participants.all()])
+
+    def __unicode__(self):
+        return "%s: %s" % (self.card.date, self.vs_string())
