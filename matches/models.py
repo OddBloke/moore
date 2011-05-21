@@ -19,7 +19,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from promotions.models import Promotion
+from promotions.models import Promotion, Title
 from review.models import Review
 from wrestlers.models import WrestlingEntity
 
@@ -129,6 +129,8 @@ class Match(CardEvent):
     match_type = models.ForeignKey(MatchType)
     winner = models.ForeignKey(WrestlingEntity, related_name="won_matches",
                                null=True, blank=True)
+    title = models.ForeignKey(Title, related_name="title_matches", null=True,
+                              blank=True)
 
     def add_competitor(self, wrestling_entity):
         role = Role.objects.get(description="Competitor")
