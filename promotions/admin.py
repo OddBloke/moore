@@ -17,7 +17,19 @@
 
 from django.contrib import admin
 
-from promotions.models import Promotion
+from promotions.models import Promotion, PromotionName
 
 
-admin.site.register(Promotion)
+class PromotionNameAdmin(admin.TabularInline):
+
+    model = PromotionName
+
+
+class PromotionAdmin(admin.ModelAdmin):
+
+    inlines = [
+        PromotionNameAdmin,
+    ]
+
+
+admin.site.register(Promotion, PromotionAdmin)
