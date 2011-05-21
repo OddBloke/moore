@@ -135,10 +135,11 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'data_sources',
     'matches',
     'promotions',
-    'wrestlers',
     'util',
+    'wrestlers',
 )
 
 # A sample logging configuration. The only tangible logging
