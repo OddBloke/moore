@@ -32,7 +32,7 @@ class Card(models.Model):
 
     def next_order_number(self):
         nxt = 1
-        for m in self.match_set.order_by('order'):
+        for m in self.cardevent_set.order_by('order'):
             if m.order != nxt:
                 return nxt
             nxt += 1
