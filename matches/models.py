@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from promotions.models import Promotion
 from wrestlers.models import WrestlingEntity
 
 
@@ -16,6 +17,9 @@ class Review(models.Model):
 class Card(models.Model):
 
     date = models.DateField()
+    promotion = models.ForeignKey(Promotion)
+
+    name = models.CharField(max_length=127, null=True, blank=True)
 
     def __unicode__(self):
         return unicode(self.date)
