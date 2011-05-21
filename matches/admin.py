@@ -57,6 +57,7 @@ class MatchAdmin(admin.ModelAdmin):
     inlines = [
         ParticipationAdmin,
     ]
+    exclude = ['event_type']
 
 
 admin.site.register(Card, CardAdmin)
