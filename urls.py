@@ -26,7 +26,7 @@ urlpatterns = patterns('',
     url(r'^$',direct_to_template, {'template':'index.html'}),
     # Examples:
     # url(r'^$', 'moore.views.home', name='home'),
-    # url(r'^moore/', include('moore.foo.urls')),
+    url(r'^matches/', include('moore.matches.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

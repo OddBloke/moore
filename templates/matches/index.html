@@ -1,0 +1,11 @@
+{% extends 'matches/base.html' %}
+
+{% block content %}
+    <p>Recent matches:</p>
+    <ul>
+    {% for match in matches %}
+        <li><a href="{% url matches.views.match_details match.pk %}">{{ match }}</a></li>
+    {% endfor %}
+    </li>
+{% endblock %}
+
