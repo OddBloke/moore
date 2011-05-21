@@ -73,6 +73,3 @@ admin.site.register(Role)
 admin.site.register(CardType)
 admin.site.register(Venue)
 admin.site.register(CardSeries)
-
-
-
