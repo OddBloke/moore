@@ -47,6 +47,9 @@ class Role(models.Model):
 
     description = models.CharField(max_length=255)
 
+    def __unicode__(self):
+        return self.description
+
 
 class Participation(models.Model):
     """The role which a WrestlingEntity takes within a CardEvent."""
@@ -60,6 +63,9 @@ class EventType(models.Model):
     """The type of an event (e.g. match, promo, interview)."""
 
     description = models.CharField(max_length=127)
+
+    def __unicode__(self):
+        return self.description
 
 
 class CardEvent(Review):
@@ -76,11 +82,19 @@ class CardEvent(Review):
             self.order = self.card.next_order_number()
         super(CardEvent, self).save(*args, **kwargs)
 
+    def __unicode__(self):
+        return "%s #%d: %s: %s" % (self.card, self.order,
+                                   self.event_type,
+                                   ", ".join(self.participants.all()))
+
 
 class MatchTypeAspect(models.Model):
     """An aspect of a match type (e.g. falls count anywhere)."""
 
     description = models.CharField(max_length=127)
+
+    def __unicode__(self):
+        return self.description
 
 
 class MatchType(models.Model):
@@ -88,6 +102,9 @@ class MatchType(models.Model):
 
     description = models.CharField(max_length=127)
     aspects = models.ManyToManyField(MatchTypeAspect)
+
+    def __unicode__(self):
+        return self.description
 
 
 class Match(CardEvent):
