@@ -57,7 +57,7 @@ class Wrestler(WrestlingEntity):
     trained_by = models.ManyToManyField('Wrestler',blank=True)
 
 class Persona(Review):
-    
+
     wrestler = models.ForeignKey(Wrestler)
     billed_name = models.CharField(max_length=128)
     billed_height = models.DecimalField(null=True, blank=True,help_text="in metres",decimal_places=2,max_digits=10)
@@ -66,7 +66,3 @@ class Persona(Review):
 
     def __unicode__(self):
         return self.billed_name
-
-
-
-
