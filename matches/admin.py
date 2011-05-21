@@ -25,6 +25,9 @@ from matches.models import (Card,
                             MatchTypeAspect,
                             Participation,
                             Role,
+                            CardType,
+                            Venue,
+                            CardSeries,
                            )
 
 
@@ -67,3 +70,9 @@ admin.site.register(Match, MatchAdmin)
 admin.site.register(MatchType)
 admin.site.register(MatchTypeAspect)
 admin.site.register(Role)
+admin.site.register(CardType)
+admin.site.register(Venue)
+admin.site.register(CardSeries)
+
+
+
