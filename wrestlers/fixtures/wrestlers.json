@@ -1,0 +1,108 @@
+[
+ {
+  "pk": 1,
+  "model": "wrestlers.wrestlingentity",
+  "fields": {
+   "name": "Big Show"
+  }
+ },
+ {
+  "pk": 2,
+  "model": "wrestlers.wrestlingentity",
+  "fields": {
+   "name": "Kane"
+  }
+ },
+ {
+  "pk": 3,
+  "model": "wrestlers.wrestlingentity",
+  "fields": {
+   "name": "Big Show & Kane"
+  }
+ },
+ {
+  "pk": 4,
+  "model": "wrestlers.wrestlingentity",
+  "fields": {
+   "name": "David Otunga"
+  }
+ },
+ {
+  "pk": 5,
+  "model": "wrestlers.wrestlingentity",
+  "fields": {
+   "name": "Michael McGillicutty"
+  }
+ },
+ {
+  "pk": 6,
+  "model": "wrestlers.wrestlingentity",
+  "fields": {
+   "name": "David Otunga & Michael McGillicutty (New Nexus)"
+  }
+ },
+ {
+  "pk": 3,
+  "model": "wrestlers.group",
+  "fields": {
+   "wrestlers": [
+    1,
+    2
+   ],
+   "name": "Big Show & Kane"
+  }
+ },
+ {
+  "pk": 6,
+  "model": "wrestlers.group",
+  "fields": {
+   "wrestlers": [
+    4,
+    5
+   ],
+   "name": "David Otunga & Michael McGillicutty (New Nexus)"
+  }
+ },
+ {
+  "pk": 3,
+  "model": "wrestlers.wrestlingteam",
+  "fields": {
+   "wrestlers": [
+    1,
+    2
+   ],
+   "group_ptr": 3
+  }
+ },
+ {
+  "pk": 6,
+  "model": "wrestlers.wrestlingteam",
+  "fields": {
+   "wrestlers": [
+    4,
+    5
+   ],
+   "group_ptr": 6
+  }
+ },
+ {
+  "pk": 1,
+  "model": "wrestlers.wrestler",
+  "fields": {}
+ },
+ {
+  "pk": 2,
+  "model": "wrestlers.wrestler",
+  "fields": {}
+ },
+ {
+  "pk": 4,
+  "model": "wrestlers.wrestler",
+  "fields": {}
+ },
+ {
+  "pk": 5,
+  "model": "wrestlers.wrestler",
+  "fields": {}
+ }
+]
