@@ -41,11 +41,22 @@ class Promotion(models.Model):
         return self.name()
 
 
-class Title(models.Model):
+class TitleName(HistorisedObject):
 
-    name = models.CharField(max_length=127)
-    start_date = models.DateField()
-    end_date = models.DateField(null=True, blank=True)
+    obj = models.ForeignKey("Title", related_name="names")
+    name = models.CharField(max_length=255)
 
     def __unicode__(self):
         return self.name
+
+
+class Title(models.Model):
+
+    start_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)
+
+    def name(self):
+        return self.names.get_current().name
+
+    def __unicode__(self):
+        return self.name()
