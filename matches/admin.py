@@ -17,10 +17,45 @@
 
 from django.contrib import admin
 
-from matches.models import Card, Match
+from matches.models import (Card,
+                            CardEvent,
+                            EventType,
+                            Match,
+                            MatchType,
+                            MatchTypeAspect,
+                            Participation,
+                            Role,
+                           )
 
 
-admin.site.register(Card)
+class CardEventInlineAdmin(admin.TabularInline):
+
+    model = CardEvent
 
 
+class CardAdmin(admin.ModelAdmin):
+
+    inlines = [
+        CardEventInlineAdmin,
+    ]
+
+
+class ParticipationAdmin(admin.TabularInline):
+
+    model = Participation
+
+
+class CardEventAdmin(admin.ModelAdmin):
+
+    inlines = [
+        ParticipationAdmin,
+    ]
+
+
+admin.site.register(Card, CardAdmin)
+admin.site.register(CardEvent, CardEventAdmin)
+admin.site.register(EventType)
 admin.site.register(Match)
+admin.site.register(MatchType)
+admin.site.register(MatchTypeAspect)
+admin.site.register(Role)
