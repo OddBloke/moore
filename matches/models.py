@@ -28,7 +28,7 @@ class Card(models.Model):
     """Represents a particular event for a wrestling promotion."""
 
     date = models.DateField()
-    promotion = models.ForeignKey(Promotion)
+    promotion = models.ManyToManyField(Promotion)
 
     name = models.CharField(max_length=127, null=True, blank=True)
 
