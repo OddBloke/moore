@@ -1,6 +1,31 @@
 {% extends 'matches/base.html' %}
 
 {% block content %}
-    <p>{{ match }}</p>
+    <dl>
+        <dt>Card</dt>
+        <dd>{{ match.card }}</dd>
+
+        <dt>Type<dt>
+        <dd>{{ match.match_type }}</dd>
+        
+        <dt>Winner</dt>
+        <dd>{{ match.winner }}</dd>
+
+        {% if match.title %}
+        <dt>Title on the line</dt>
+        <dd>{{ match.title }}</dd>
+        {% endif %}
+    </dl>
 {% endblock %}
 
+{% block sidebar %}
+    <ul>
+    {% for competitor in match.get_competitor_list %}
+        <li>
+            Other matches involving: {{ competitor }}:
+            <ul>
+            </ul>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
