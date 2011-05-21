@@ -114,6 +114,12 @@ class Match(CardEvent):
     winner = models.ForeignKey(WrestlingEntity, related_name="won_matches",
                                null=True, blank=True)
 
+    def add_competitor(self, wrestling_entity):
+        role = Role.objects.get(description="Competitor")
+        Participation.objects.create(event=self,
+                                     participant=wrestling_entity,
+                                     role=role)
+
     def save(self, *args, **kwargs):
         self.event_type = EventType.objects.get(description="Match")
         if self.match_type_id is None:

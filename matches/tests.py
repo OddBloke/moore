@@ -39,8 +39,8 @@ class MatchTest(TestCase):
         if order_num is not None:
             m.order = order_num
         m.save()
-        m.participants.add(self.w1)
-        m.participants.add(self.w2)
+        m.add_competitor(self.w1)
+        m.add_competitor(self.w2)
         m.save()
         return m
 
@@ -52,7 +52,7 @@ class MatchTest(TestCase):
         m = self._create_two_person_match()
         self.assertEqual("%s vs. %s" % (self.w1.name, self.w2.name),
                          m.vs_string())
-        m.participants.add(self.w3)
+        m.add_competitor(self.w3)
         m.save()
         self.assertEqual("%s vs. %s vs. %s" % (self.w1.name,
                                                self.w2.name,
@@ -63,7 +63,7 @@ class MatchTest(TestCase):
         m = self._create_two_person_match()
         self.assertEqual("%s: %s" % (self.card.date, m.vs_string()),
                          unicode(m))
-        m.participants.add(self.w3)
+        m.add_competitor(self.w3)
         m.save()
         self.assertEqual("%s: %s" % (self.card.date, m.vs_string()),
                          unicode(m))
@@ -77,7 +77,7 @@ class MatchTest(TestCase):
     def test_update_time_changed_on_m2m(self):
         m = self._create_two_person_match()
         before_time = m.updated_at
-        m.participants.add(self.w3)
+        m.add_competitor(self.w3)
         self.assertTrue(before_time < m.updated_at)
 
     def test_reviewed(self):
@@ -86,7 +86,7 @@ class MatchTest(TestCase):
         m.reviewed_by = User.objects.get(id=1)
         m.save()
         self.assertTrue(m.reviewed, "%s != %s" % (m.reviewed_at, m.updated_at))
-        m.participants.add(self.w3)
+        m.add_competitor(self.w3)
         self.assertFalse(m.reviewed)
 
     def test_explicit_next_order_number(self):
