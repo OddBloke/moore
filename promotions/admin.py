@@ -17,7 +17,8 @@
 
 from django.contrib import admin
 
-from promotions.models import Promotion, PromotionName, Title, TitleName
+from promotions.models import (Promotion, PromotionName, Title, TitleName,
+                               TitlePromotion)
 
 
 class PromotionNameAdmin(admin.TabularInline):
@@ -37,10 +38,16 @@ class TitleNameAdmin(admin.TabularInline):
     model = TitleName
 
 
+class TitlePromotionAdmin(admin.TabularInline):
+
+    model = TitlePromotion
+
+
 class TitleAdmin(admin.ModelAdmin):
 
     inlines = [
         TitleNameAdmin,
+        TitlePromotionAdmin,
     ]
 
 

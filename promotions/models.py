@@ -41,6 +41,15 @@ class Promotion(models.Model):
         return self.name()
 
 
+class TitlePromotion(HistorisedObject):
+
+    obj = models.ForeignKey("Title", related_name="promotions")
+    promotion = models.ForeignKey(Promotion)
+
+    def __unicode__(self):
+        return self.promotion
+
+
 class TitleName(HistorisedObject):
 
     obj = models.ForeignKey("Title", related_name="names")
