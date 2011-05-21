@@ -24,8 +24,10 @@ class MatchTest(TestCase):
         self.w2 = Wrestler.objects.get(id=2)
         self.w3 = Wrestler.objects.get(id=3)
 
-    def _create_two_person_match(self):
-        m = Match.objects.create(card=self.card)
+    def _create_two_person_match(self, order_num=None):
+        m = Match(card=self.card)
+        if order_num is not None:
+            m.order = order_num
         m.save()
         m.participants.add(self.w1)
         m.participants.add(self.w2)
@@ -76,3 +78,27 @@ class MatchTest(TestCase):
         self.assertTrue(m.reviewed, "%s != %s" % (m.reviewed_at, m.updated_at))
         m.participants.add(self.w3)
         self.assertFalse(m.reviewed)
+
+    def test_explicit_next_order_number(self):
+        # With no matches, the next order number should be 1
+        self.assertEqual(1, self.card.next_order_number())
+        # Multiple calls with no new matches should be the same
+        self.assertEqual(1, self.card.next_order_number())
+
+        self._create_two_person_match(order_num=1)
+        self.assertEqual(2, self.card.next_order_number())
+
+        self._create_two_person_match(order_num=3)
+        self.assertEqual(2, self.card.next_order_number())
+
+        self._create_two_person_match(order_num=2)
+        self.assertEqual(4, self.card.next_order_number())
+
+    def test_implicit_next_order_number(self):
+        self.assertEqual(1, self.card.next_order_number())
+        self._create_two_person_match()
+        self.assertEqual(2, self.card.next_order_number())
+        self._create_two_person_match(order_num=3)
+        self.assertEqual(2, self.card.next_order_number())
+        self._create_two_person_match()
+        self.assertEqual(4, self.card.next_order_number())
