@@ -23,14 +23,42 @@ from promotions.models import Promotion, Title
 from review.models import Review
 from wrestlers.models import WrestlingEntity
 
+class CardType(models.Model):
+    """For example PPV, House Show, TV Episode"""
+    name = models.CharField(max_length=127)
+    description = models.TextField(null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+class CardSeries(models.Model):
+    """For Example: Wrestlemania, RAW"""
+    name = models.CharField(max_length=127)
+    description = models.TextField(null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+class Venue(models.Model):
+    name = models.CharField(max_length=127)
+    country = models.CharField(max_length=127)
+    city = models.CharField(max_length=127)
+
+    def __unicode__(self):
+        return self.name
 
 class Card(models.Model):
     """Represents a particular event for a wrestling promotion."""
 
+    name = models.CharField(max_length=127, null=True, blank=True)
     date = models.DateField()
     promotion = models.ManyToManyField(Promotion)
+    card_type = models.ForeignKey(CardType)
+    live_attendance = models.IntegerField(default=0)
+    broadcast_viewership = models.IntegerField(default=0)
 
-    name = models.CharField(max_length=127, null=True, blank=True)
+    venue = models.ForeignKey(Venue,null=True,blank=True)
+    series = models.ForeignKey(CardSeries,null=True,blank=True)
 
     def next_order_number(self):
         nxt = 1
