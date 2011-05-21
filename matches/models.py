@@ -16,6 +16,8 @@
 #
 
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from promotions.models import Promotion
 from util.models import Review
@@ -57,6 +59,12 @@ class Participation(models.Model):
     event = models.ForeignKey("CardEvent")
     participant = models.ForeignKey(WrestlingEntity)
     role = models.ForeignKey(Role)
+
+
+# Hack to work around http://code.djangoproject.com/ticket/13757
+@receiver(post_save, sender=Participation)
+def participation_post_save_handler(instance, *args, **kwargs):
+    instance.event.save()
 
 
 class EventType(models.Model):
