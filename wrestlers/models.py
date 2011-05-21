@@ -9,7 +9,10 @@ class GroupManager(models.Manager):
 
 class WrestlingEntity(models.Model):
 
-    pass
+    name = models.CharField(max_length=128)
+
+    def __unicode__(self):
+        return self.name
 
 
 class Group(models.Model):
@@ -30,7 +33,4 @@ class WrestlingTeam(Group, WrestlingEntity):
 
 class Wrestler(WrestlingEntity):
 
-    name = models.CharField(max_length=128)
-
-    def __unicode__(self):
-        return self.name
+    pass
