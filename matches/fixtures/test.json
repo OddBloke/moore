@@ -1,0 +1,57 @@
+[
+ {
+  "pk": 1,
+  "model": "promotions.promotion",
+  "fields": {
+   "parent": null,
+   "name": "Test Promotion",
+   "end_date": null,
+   "start_date": "1999-04-29"
+  }
+ },
+ {
+  "pk": 1,
+  "model": "matches.card",
+  "fields": {
+   "date": "2011-05-20",
+   "promotion": 1,
+   "name": ""
+  }
+ },
+ {
+  "pk": 1,
+  "model": "wrestlers.wrestlingentity",
+  "fields": {
+   "name": "w1"
+  }
+ },
+ {
+  "pk": 2,
+  "model": "wrestlers.wrestlingentity",
+  "fields": {
+   "name": "w2"
+  }
+ },
+ {
+  "pk": 3,
+  "model": "wrestlers.wrestlingentity",
+  "fields": {
+   "name": "w3"
+  }
+ },
+ {
+  "pk": 1,
+  "model": "wrestlers.wrestler",
+  "fields": {}
+ },
+ {
+  "pk": 2,
+  "model": "wrestlers.wrestler",
+  "fields": {}
+ },
+ {
+  "pk": 3,
+  "model": "wrestlers.wrestler",
+  "fields": {}
+ }
+]
