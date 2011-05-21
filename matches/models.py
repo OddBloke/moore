@@ -114,6 +114,12 @@ class Match(CardEvent):
     winner = models.ForeignKey(WrestlingEntity, related_name="won_matches",
                                null=True, blank=True)
 
+    def save(self, *args, **kwargs):
+        self.event_type = EventType.objects.get(description="Match")
+        if self.match_type_id is None:
+            self.match_type = MatchType.objects.get(description="Standard")
+        super(Match, self).save(*args, **kwargs)
+
     def vs_string(self):
         return " vs. ".join([p.name for p in self.participants.all()])
 
