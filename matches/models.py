@@ -1,6 +1,16 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 from wrestlers.models import WrestlingEntity
+
+
+class Review(models.Model):
+
+    reviewed_by = models.ForeignKey(User)
+    reviewed_at = models.DateTimeField()
+
+    class Meta:
+        abstract = True
 
 
 class Card(models.Model):
@@ -11,7 +21,7 @@ class Card(models.Model):
         return unicode(self.date)
 
 
-class Match(models.Model):
+class Match(Review):
 
     card = models.ForeignKey(Card)
     participants = models.ManyToManyField(WrestlingEntity)
