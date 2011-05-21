@@ -77,7 +77,7 @@ class CardEvent(Review):
         super(CardEvent, self).save(*args, **kwargs)
 
 
-class MatchTypeAspects(models.Model):
+class MatchTypeAspect(models.Model):
     """An aspect of a match type (e.g. falls count anywhere)."""
 
     description = models.CharField(max_length=127)
@@ -87,7 +87,7 @@ class MatchType(models.Model):
     """A type of match, including various aspects."""
 
     description = models.CharField(max_length=127)
-    aspects = models.ManyToManyField(MatchTypeAspects)
+    aspects = models.ManyToManyField(MatchTypeAspect)
 
 
 class Match(CardEvent):
