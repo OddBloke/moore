@@ -45,7 +45,7 @@ class Card(models.Model):
 class Role(models.Model):
     """A role that can be taken within a CardEvent."""
 
-    description = models.CharField(max_length=255)
+    description = models.CharField(max_length=255, primary_key=True)
 
     def __unicode__(self):
         return self.description
@@ -62,7 +62,7 @@ class Participation(models.Model):
 class EventType(models.Model):
     """The type of an event (e.g. match, promo, interview)."""
 
-    description = models.CharField(max_length=127)
+    description = models.CharField(max_length=127, primary_key=True)
 
     def __unicode__(self):
         return self.description
@@ -91,7 +91,7 @@ class CardEvent(Review):
 class MatchTypeAspect(models.Model):
     """An aspect of a match type (e.g. falls count anywhere)."""
 
-    description = models.CharField(max_length=127)
+    description = models.CharField(max_length=127, primary_key=True)
 
     def __unicode__(self):
         return self.description
