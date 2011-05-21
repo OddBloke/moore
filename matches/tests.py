@@ -71,6 +71,12 @@ class MatchTest(MatchTestCase):
         self.assertEqual("%s: %s" % (self.card.date, m.vs_string()),
                          unicode(m))
 
+    def test_winner_in_match(self):
+        m = self._create_two_person_match()
+        m.winner = self.w3
+        m.save()
+        self.assertEqual(0, len(Match.objects.filter(winner=self.w3)))
+
 
 class TestReview(MatchTestCase):
 
