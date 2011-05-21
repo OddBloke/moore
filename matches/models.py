@@ -23,12 +23,20 @@ from promotions.models import Promotion
 from review.models import Review
 from wrestlers.models import WrestlingEntity
 
+class CardType(models.Model):
+    """For example PPV, House Show, TV Episode"""
+    name = models.CharField(max_length=127)
+    description = models.TextField(null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
 
 class Card(models.Model):
     """Represents a particular event for a wrestling promotion."""
 
     date = models.DateField()
     promotion = models.ManyToManyField(Promotion)
+    card_type = models.ForeignKey(CardType)
 
     name = models.CharField(max_length=127, null=True, blank=True)
 
