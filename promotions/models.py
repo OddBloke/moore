@@ -44,8 +44,8 @@ class Promotion(models.Model):
 class Title(models.Model):
 
     name = models.CharField(max_length=127)
-    active_start_date = models.DateField()
-    active_end_date = models.DateField(null=True, blank=True)
+    start_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)
 
     def __unicode__(self):
         return self.name
