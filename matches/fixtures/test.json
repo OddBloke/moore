@@ -19,12 +19,20 @@
  },
  {
   "pk": 1,
+  "model": "promotions.promotionname",
+  "fields": {
+   "obj": 1,
+   "start_date": "1999-04-29",
+   "end_date": null,
+   "name": "Test Promotion"
+  }
+ },
+ {
+  "pk": 1,
   "model": "promotions.promotion",
   "fields": {
-   "parent": null,
-   "name": "Test Promotion",
-   "end_date": null,
-   "start_date": "1999-04-29"
+   "start_date": "1999-04-29",
+   "end_date": null
   }
  },
  {
