@@ -128,7 +128,14 @@ class Match(CardEvent):
                                      participant=wrestling_entity,
                                      role=role)
 
+    @property
+    def competitor_list(self):
+        return self.participants.filter(participation__role="Competitor")
+
     def save(self, *args, **kwargs):
+        if self.winner is not None:
+            if not self.winner.wrestlingentity_ptr in self.competitor_list:
+                return
         self.event_type = EventType.objects.get(description="Match")
         if self.match_type_id is None:
             self.match_type = MatchType.objects.get(description="Standard")
