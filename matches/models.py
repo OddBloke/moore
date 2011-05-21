@@ -13,4 +13,4 @@ class Match(models.Model):
     card = models.ForeignKey(Card)
     participants = models.ManyToManyField(WrestlingEntity)
     winner = models.ForeignKey(WrestlingEntity, related_name="won_matches",
-                               null=True)
+                               null=True, blank=True)
