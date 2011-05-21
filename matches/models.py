@@ -23,6 +23,7 @@ from wrestlers.models import WrestlingEntity
 
 
 class Card(models.Model):
+    """Represents a particular event for a wrestling promotion."""
 
     date = models.DateField()
     promotion = models.ForeignKey(Promotion)
@@ -41,18 +42,60 @@ class Card(models.Model):
         return unicode(self.date)
 
 
-class Match(Review):
+class Role(models.Model):
+    """A role that can be taken within a CardEvent."""
+
+    description = models.CharField(max_length=255)
+
+
+class Participation(models.Model):
+    """The role which a WrestlingEntity takes within a CardEvent."""
+
+    event = models.ForeignKey("CardEvent")
+    participant = models.ForeignKey(WrestlingEntity)
+    role = models.ForeignKey(Role)
+
+
+class EventType(models.Model):
+    """The type of an event (e.g. match, promo, interview)."""
+
+    description = models.CharField(max_length=127)
+
+
+class CardEvent(Review):
+    """A particular event within a card."""
 
     order = models.IntegerField()
     card = models.ForeignKey(Card)
-    participants = models.ManyToManyField(WrestlingEntity)
-    winner = models.ForeignKey(WrestlingEntity, related_name="won_matches",
-                               null=True, blank=True)
+    participants = models.ManyToManyField(WrestlingEntity,
+                                          through=Participation)
+    event_type = models.ForeignKey(EventType)
 
     def save(self, *args, **kwargs):
         if self.order is None:
             self.order = self.card.next_order_number()
-        super(Match, self).save(*args, **kwargs)
+        super(CardEvent, self).save(*args, **kwargs)
+
+
+class MatchTypeAspects(models.Model):
+    """An aspect of a match type (e.g. falls count anywhere)."""
+
+    description = models.CharField(max_length=127)
+
+
+class MatchType(models.Model):
+    """A type of match, including various aspects."""
+
+    description = models.CharField(max_length=127)
+    aspects = models.ManyToManyField(MatchTypeAspects)
+
+
+class Match(CardEvent):
+    """A match."""
+
+    match_type = models.ForeignKey(MatchType)
+    winner = models.ForeignKey(WrestlingEntity, related_name="won_matches",
+                               null=True, blank=True)
 
     def vs_string(self):
         return " vs. ".join([p.name for p in self.participants.all()])
