@@ -26,7 +26,7 @@ class Group(models.Model):
         return self.name if self.name else "Unnamed Group"
 
 
-class WrestlingTeam(Group, WrestlingEntity):
+class WrestlingTeam(WrestlingEntity, Group):
 
     pass
 
