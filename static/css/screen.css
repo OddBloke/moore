@@ -1,0 +1,130 @@
+body {
+	margin:0;
+	padding:0;
+	border:0;			/* This removes the border around the viewport in old versions of IE */
+	width:100%;
+	min-width:600px;    	/* Minimum width of layout - remove line if not required */
+					/* The min-width property does not work in old versions of Internet Explorer */
+	font-size:90%;
+    background: #65ACDE;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+a {
+	color:#369;
+}
+a:hover {
+	color:#fff;
+	background:#369;
+	text-decoration:none;
+}
+h1, h2, h3 {
+	margin:.8em 0 .2em 0;
+	padding:0;
+    color: white;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+}
+p {
+	margin:.4em 0 .8em 0;
+	padding:0;
+}
+/* Header styles */
+#header {
+	clear:both;
+	float:left;
+	width:100%;
+    margin-bottom: 20px;
+}
+#header p,
+#header h1,
+#header h2 {
+	padding:.4em 15px 0 15px;
+	margin:0;
+}
+.heads {
+    float: left;
+    display: block;
+    margin: 5px;
+}
+#header ul {
+	width:100%;
+	list-style:none;
+	margin:0;
+    margin-top: 30px;
+	padding:0;
+}
+#header ul li {
+	margin:10px;
+	padding:0;
+	float:left;
+}
+/* 'widths' sub menu */
+#layoutdims {
+	clear:both;
+	background:#eee;
+	border-top:4px solid #000;
+	margin:0;
+	padding:6px 15px !important;
+	text-align:right;
+}
+/* column container */
+.colmask {
+	position:relative;	/* This fixes the IE7 overflow hidden bug */
+	clear:both;
+	float:left;
+	width:100%;			/* width of whole page */
+	overflow:hidden;		/* This chops off any overhanging divs */
+}
+/* common column settings */
+.colright,
+.colmid,
+.colleft {
+	float:left;
+	width:100%;
+	position:relative;
+}
+.col1,
+.col2 {
+	float:left;
+	position:relative;
+	overflow:hidden;
+    height: 100%;
+    margin: 5px;
+    background:#26516E;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 10px;
+}
+/* 2 Column (right menu) settings */
+.rightmenu .colleft {
+	right:25%;			/* right column width */
+}
+.rightmenu .col1 {
+	width:67%;			/* left column content width (left column width minus left and right padding) */
+	left:27%;			/* (right column width) plus (left column left padding) */
+}
+.rightmenu .col2 {
+	width:21%;			/* right column content width (right column width minus left and right padding) */
+	left:31%;			/* (right column width) plus (left column left and right padding) plus (right column left padding) */
+}
+/* Footer styles */
+#footer {
+	clear:both;
+	float:left;
+	width:100%;
+	border-top:1px solid #000;
+}
+#footer p {
+	padding:10px;
+	margin:0;
+}
+
+#user_profile {
+    float: right;
+    margin: 10px;
+    width: 100px;
+    height: 20px;
+}
+
+

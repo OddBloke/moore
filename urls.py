@@ -16,11 +16,14 @@
 #
 
 from django.conf.urls.defaults import patterns, include, url
+from django.views.generic.simple import direct_to_template
+import settings
 
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^',direct_to_template, {'template':'index.html'}),
     # Examples:
     # url(r'^$', 'moore.views.home', name='home'),
     # url(r'^moore/', include('moore.foo.urls')),
@@ -29,4 +32,11 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+
 )
+
+#if settings.DEBUG:
+#    urlpatterns += patterns('',
+#        (r'^static/(?P<path>.*)$', 'django.views.static.serve', { 'document_root': settings.MEDIA_ROOT }),
+#    )
+

@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/css/screen.css" media="screen" />
+    </head>
+    <body>
+    <div id="header">
+        <div id="user_profile">
+        {% if user.is_authenticated %}
+            profile
+            | logout
+        {% else %}
+            login
+        {% endif %}
+        </div>
+        <div class="heads">
+            <h1>The Whole F'n Site</h1>
+            <h2>Your source of Wrestling facts.</h2>
+        </div>
+        <div class="heads">
+            <ul>
+                <li><a href="">Wrestlers</a></li>
+                <li><a href="">Matches</a></li>
+                <li><a href="">Promotions</a><li>
+                <li><a href="">Titles</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="colmask rightmenu">
+        <div class="colleft"> 
+            <div class="col1"> 
+                {% block content %}
+                {% endblock %}
+            </div> 
+            <div class="col2">
+                {% block sidebar %}
+                {% endblock %}
+            </div> 
+        </div> 
+    </div> 
+    </body>
+</html>
