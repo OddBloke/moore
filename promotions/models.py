@@ -8,3 +8,10 @@ class Promotion(models.Model):
     end_date = models.DateField()
 
     parent = models.ForeignKey("self", null=True, blank=True)
+
+
+class Title(models.Model):
+
+    name = models.CharField(max_length=127)
+    active_start_date = models.DateField()
+    active_end_date = models.DateField()
