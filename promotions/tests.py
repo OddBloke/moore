@@ -32,7 +32,7 @@ class PromotionNameTest(TestCase):
                                     end_date=None):
         self.assertRaises(ValidationError,
                           PromotionName.objects.create,
-                          promotion=promotion,
+                          obj=promotion,
                           start_date=start_date,
                           end_date=end_date,
                           name=name)
@@ -56,12 +56,12 @@ class PromotionNameTest(TestCase):
 
     def test_promotion_name(self):
         self.assertRaises(PromotionName.DoesNotExist, self.p2.name)
-        n1 = PromotionName.objects.create(promotion=self.p2, name="A",
+        n1 = PromotionName.objects.create(obj=self.p2, name="A",
                                           start_date="2000-02-01")
         self.assertEqual("A", self.p2.name())
         n1.end_date = "2000-03-01"
         n1.save()
         self.assertRaises(PromotionName.DoesNotExist, self.p2.name)
-        n2 = PromotionName.objects.create(promotion=self.p2, name="B",
+        n2 = PromotionName.objects.create(obj=self.p2, name="B",
                                           start_date="2000-03-01")
         self.assertEqual("B", self.p2.name())
