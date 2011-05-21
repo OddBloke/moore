@@ -1,0 +1,11 @@
+[
+ {
+  "pk": 1,
+  "model": "matches.card",
+  "fields": {
+   "date": "2011-05-20",
+   "promotion": 1,
+   "name": ""
+  }
+ }
+]

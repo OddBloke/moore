@@ -1,0 +1,12 @@
+[
+ {
+  "pk": 1,
+  "model": "promotions.promotion",
+  "fields": {
+   "parent": null,
+   "name": "Smackdown",
+   "end_date": null,
+   "start_date": "1999-04-29"
+  }
+ }
+]

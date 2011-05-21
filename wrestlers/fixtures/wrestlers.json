@@ -42,6 +42,34 @@
   }
  },
  {
+  "pk": 7,
+  "model": "wrestlers.wrestlingentity",
+  "fields": {
+   "name": "Randy Orton"
+  }
+ },
+ {
+  "pk": 8,
+  "model": "wrestlers.wrestlingentity",
+  "fields": {
+   "name": "Mark Henry"
+  }
+ },
+ {
+  "pk": 9,
+  "model": "wrestlers.wrestlingentity",
+  "fields": {
+   "name": "Christian"
+  }
+ },
+ {
+  "pk": 10,
+  "model": "wrestlers.wrestlingentity",
+  "fields": {
+   "name": "Sheamus"
+  }
+ },
+ {
   "pk": 3,
   "model": "wrestlers.group",
   "fields": {
@@ -102,6 +130,26 @@
  },
  {
   "pk": 5,
+  "model": "wrestlers.wrestler",
+  "fields": {}
+ },
+ {
+  "pk": 7,
+  "model": "wrestlers.wrestler",
+  "fields": {}
+ },
+ {
+  "pk": 8,
+  "model": "wrestlers.wrestler",
+  "fields": {}
+ },
+ {
+  "pk": 9,
+  "model": "wrestlers.wrestler",
+  "fields": {}
+ },
+ {
+  "pk": 10,
   "model": "wrestlers.wrestler",
   "fields": {}
  }
