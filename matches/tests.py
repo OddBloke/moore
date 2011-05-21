@@ -24,7 +24,7 @@ from matches.models import Card, Match
 from wrestlers.models import Wrestler
 
 
-class MatchTest(TestCase):
+class MatchTestCase(TestCase):
 
     fixtures = ['test.json']
 
@@ -43,6 +43,9 @@ class MatchTest(TestCase):
         m.add_competitor(self.w2)
         m.save()
         return m
+
+
+class MatchTest(MatchTestCase):
 
     def test_vs_string(self):
         """
@@ -68,6 +71,9 @@ class MatchTest(TestCase):
         self.assertEqual("%s: %s" % (self.card.date, m.vs_string()),
                          unicode(m))
 
+
+class TestReview(MatchTestCase):
+
     def test_update_time(self):
         before = datetime.now()
         m = self._create_two_person_match()
@@ -88,6 +94,9 @@ class MatchTest(TestCase):
         self.assertTrue(m.reviewed, "%s != %s" % (m.reviewed_at, m.updated_at))
         m.add_competitor(self.w3)
         self.assertFalse(m.reviewed)
+
+
+class CaseTest(MatchTestCase):
 
     def test_explicit_next_order_number(self):
         # With no matches, the next order number should be 1
