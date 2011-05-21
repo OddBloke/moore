@@ -7,6 +7,11 @@ class GroupManager(models.Manager):
         return self.filter(wrestlers=Wrestler.objects.filter(id__in=[w.id for w in l]))
 
 
+class WrestlingEntity(models.Model):
+
+    pass
+
+
 class Group(models.Model):
 
     objects = GroupManager()
@@ -18,7 +23,12 @@ class Group(models.Model):
         return self.name if self.name else "Unnamed Group"
 
 
-class Wrestler(models.Model):
+class WrestlingTeam(Group, WrestlingEntity):
+
+    pass
+
+
+class Wrestler(WrestlingEntity):
 
     name = models.CharField(max_length=128)
 
