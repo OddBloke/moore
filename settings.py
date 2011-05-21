@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     'matches',
     'promotions',
     'wrestlers',
+    'util',
 )
 
 # A sample logging configuration. The only tangible logging
