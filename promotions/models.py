@@ -9,9 +9,15 @@ class Promotion(models.Model):
 
     parent = models.ForeignKey("self", null=True, blank=True)
 
+    def __unicode__(self):
+        return self.name
+
 
 class Title(models.Model):
 
     name = models.CharField(max_length=127)
     active_start_date = models.DateField()
     active_end_date = models.DateField(null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
