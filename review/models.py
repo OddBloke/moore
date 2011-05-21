@@ -19,14 +19,14 @@ from datetime import datetime
 
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models.signals import m2m_changed, pre_save
+from django.db.models.signals import m2m_changed, post_save
 from django.dispatch import receiver
 
 class Review(models.Model):
 
     reviewed_by = models.ForeignKey(User, null=True, blank=True)
     reviewed_at = models.DateTimeField(null=True, blank=True)
-    updated_at = models.DateTimeField()
+    updated_at = models.DateTimeField(auto_now=True)
 
     @property
     def reviewed(self):
@@ -36,11 +36,10 @@ class Review(models.Model):
         abstract = True
 
 
-@receiver(pre_save)
-def review_pre_save_handler(instance, *args, **kwargs):
+@receiver(post_save)
+def review_post_save_handler(instance, *args, **kwargs):
     if isinstance(instance, Review):
-        now = datetime.now()
-        instance.updated_at = now
+        now = instance.updated_at
         if instance.reviewed_at is None and instance.reviewed_by is not None:
             # First review
             instance.reviewed_at = now
