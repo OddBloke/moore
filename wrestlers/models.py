@@ -23,7 +23,7 @@ class Group(models.Model):
     name = models.CharField(max_length=128)
 
     def __unicode__(self):
-        return self.name if self.name else "Unnamed Group"
+        return self.name if self.name else ", ".join([w.name for w in self.wrestlers])
 
 
 class WrestlingTeam(WrestlingEntity, Group):
