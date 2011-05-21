@@ -12,6 +12,7 @@ class HistorisedObject(models.Model):
 
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
+    comment = models.TextField(null=True, blank=True)
 
     objects = HistorisedObjectManager()
 
