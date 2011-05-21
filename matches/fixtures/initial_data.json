@@ -1,0 +1,20 @@
+[
+ {
+  "pk": "Match",
+  "model": "matches.eventtype",
+  "fields": {}
+ },
+ {
+  "pk": 1,
+  "model": "matches.matchtype",
+  "fields": {
+   "aspects": [],
+   "description": "Standard"
+  }
+ },
+ {
+  "pk": "Competitor",
+  "model": "matches.role",
+  "fields": {}
+ }
+]
