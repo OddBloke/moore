@@ -2,19 +2,11 @@ from django.core.exceptions import ValidationError
 from django.db import models
 
 
-class HistorisedObjectManager(models.Manager):
-
-    def get_current(self):
-        return self.get(end_date__isnull=True)
-
-
 class HistorisedObject(models.Model):
 
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
     comment = models.TextField(null=True, blank=True)
-
-    objects = HistorisedObjectManager()
 
     def clean(self):
         name = self._meta.object_name
@@ -42,3 +34,4 @@ class HistorisedObject(models.Model):
 
     class Meta:
         abstract = True
+        get_latest_by = 'end_date'

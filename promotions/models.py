@@ -35,7 +35,7 @@ class Promotion(models.Model):
     end_date = models.DateField(null=True, blank=True)
 
     def name(self):
-        return self.names.get_current().name
+        return self.names.latest().name
 
     def __unicode__(self):
         return self.name()
@@ -65,7 +65,7 @@ class Title(models.Model):
     end_date = models.DateField(null=True, blank=True)
 
     def name(self):
-        return self.names.get_current().name
+        return self.names.latest().name
 
     def __unicode__(self):
         return self.name()
