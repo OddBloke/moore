@@ -16,6 +16,7 @@
 #
 
 from django.db import models
+from review.models import Review
 
 
 class GroupManager(models.Manager):
@@ -24,9 +25,10 @@ class GroupManager(models.Manager):
         return self.filter(wrestlers=Wrestler.objects.filter(id__in=[w.id for w in l]))
 
 
-class WrestlingEntity(models.Model):
+class WrestlingEntity(Review):
 
     name = models.CharField(max_length=128)
+    bio = models.TextField(blank=True,null=True)
 
     def __unicode__(self):
         return self.name
@@ -50,4 +52,21 @@ class WrestlingTeam(WrestlingEntity, Group):
 
 class Wrestler(WrestlingEntity):
 
-    pass
+    born_when = models.DateField(null=True, blank=True)
+    born_location = models.CharField(max_length=128,blank=True,null=True)
+    trained_by = models.ManyToManyField('Wrestler',blank=True)
+
+class Persona(Review):
+    
+    wrestler = models.ForeignKey(Wrestler)
+    billed_name = models.CharField(max_length=128)
+    billed_height = models.DecimalField(null=True, blank=True,help_text="in metres",decimal_places=2,max_digits=10)
+    billed_weight = models.IntegerField(null=True, blank=True,help_text="in kilograms")
+    debut = models.DateField(null=True, blank=True)
+
+    def __unicode__(self):
+        return self.billed_name
+
+
+
+
