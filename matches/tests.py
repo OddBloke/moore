@@ -5,6 +5,9 @@ when you run "manage.py test".
 Replace this with more appropriate tests for your application.
 """
 
+from datetime import datetime
+
+from django.contrib.auth.models import User
 from django.test import TestCase
 
 from matches.models import Card, Match
@@ -52,3 +55,24 @@ class MatchTest(TestCase):
         m.save()
         self.assertEqual("%s: %s" % (self.card.date, m.vs_string()),
                          unicode(m))
+
+    def test_update_time(self):
+        before = datetime.now()
+        m = self._create_two_person_match()
+        after = datetime.now()
+        self.assertTrue(before < m.updated_at < after)
+
+    def test_update_time_changed_on_m2m(self):
+        m = self._create_two_person_match()
+        before_time = m.updated_at
+        m.participants.add(self.w3)
+        self.assertTrue(before_time < m.updated_at)
+
+    def test_reviewed(self):
+        m = self._create_two_person_match()
+        self.assertFalse(m.reviewed)
+        m.reviewed_by = User.objects.get(id=1)
+        m.save()
+        self.assertTrue(m.reviewed, "%s != %s" % (m.reviewed_at, m.updated_at))
+        m.participants.add(self.w3)
+        self.assertFalse(m.reviewed)
