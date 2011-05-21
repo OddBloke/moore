@@ -23,6 +23,7 @@ from promotions.models import Promotion, Title
 from review.models import Review
 from wrestlers.models import WrestlingEntity
 
+
 class CardType(models.Model):
     """For example PPV, House Show, TV Episode"""
     name = models.CharField(max_length=127)
@@ -30,6 +31,7 @@ class CardType(models.Model):
 
     def __unicode__(self):
         return self.name
+
 
 class CardSeries(models.Model):
     """For Example: Wrestlemania, RAW"""
@@ -39,6 +41,7 @@ class CardSeries(models.Model):
     def __unicode__(self):
         return self.name
 
+
 class Venue(models.Model):
     name = models.CharField(max_length=127)
     country = models.CharField(max_length=127)
@@ -46,6 +49,7 @@ class Venue(models.Model):
 
     def __unicode__(self):
         return self.name
+
 
 class Card(models.Model):
     """Represents a particular event for a wrestling promotion."""
