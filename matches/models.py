@@ -7,8 +7,8 @@ from wrestlers.models import WrestlingEntity
 
 class Review(models.Model):
 
-    reviewed_by = models.ForeignKey(User)
-    reviewed_at = models.DateTimeField()
+    reviewed_by = models.ForeignKey(User, null=True, blank=True)
+    reviewed_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         abstract = True
