@@ -138,7 +138,7 @@ INSTALLED_APPS = (
     'data_sources',
     'matches',
     'promotions',
-    'util',
+    'review',
     'wrestlers',
 )
 

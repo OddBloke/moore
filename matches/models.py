@@ -20,7 +20,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from promotions.models import Promotion
-from util.models import Review
+from review.models import Review
 from wrestlers.models import WrestlingEntity
 
 
