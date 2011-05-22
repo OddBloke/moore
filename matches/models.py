@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -181,10 +182,14 @@ class Match(CardEvent):
     def competitor_list(self):
         return self.participants.filter(participation__role="Competitor")
 
-    def save(self, *args, **kwargs):
+    def clean(self):
         if self.winner is not None:
-            if not self.winner.wrestlingentity_ptr in self.competitor_list:
-                return
+            if not self.winner in self.competitor_list:
+                raise ValidationError("%s is not a competitor in the match."
+                                        % (self.winner,))
+
+    def save(self, *args, **kwargs):
+        self.clean()
         self.event_type = EventType.objects.get(description="Match")
         if self.match_type_id is None:
             self.match_type = MatchType.objects.get(description="Standard")
