@@ -54,6 +54,11 @@ class PromotionNameTest(TestCase):
         self.assertRaisesValidationError(self.p2, "After Name", "2000-04-01",
                                          "2000-02-01")
 
+    def test_only_one_latest(self):
+        PromotionName.objects.create(obj=self.p2, start_date="2000-02-01",
+                                     name="Foo")
+        self.assertRaisesValidationError(self.p2, "Bar", "2000-04-01")
+
     def test_promotion_name(self):
         self.assertRaises(PromotionName.DoesNotExist, self.p2.name)
         n1 = PromotionName.objects.create(obj=self.p2, name="A",
@@ -61,7 +66,7 @@ class PromotionNameTest(TestCase):
         self.assertEqual("A", self.p2.name())
         n1.end_date = "2000-03-01"
         n1.save()
-        self.assertRaises(PromotionName.DoesNotExist, self.p2.name)
+        self.assertEqual("A", self.p2.name())
         n2 = PromotionName.objects.create(obj=self.p2, name="B",
                                           start_date="2000-03-01")
         self.assertEqual("B", self.p2.name())
