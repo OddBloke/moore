@@ -6,9 +6,12 @@ class HistorisedObjectManager(models.Manager):
 
     def recent(self):
         try:
-            return self.get(end_date__isnull=True)
+            try:
+                return self.get(end_date__isnull=True)
+            except ObjectDoesNotExist:
+                return self.latest()
         except ObjectDoesNotExist:
-            return self.latest()
+            return None
 
 
 class HistorisedObject(models.Model):

@@ -35,10 +35,16 @@ class Promotion(models.Model):
     end_date = models.DateField(null=True, blank=True)
 
     def name(self):
-        return self.names.recent().name
+        recent = self.names.recent()
+        if recent is not None:
+            return recent.name
+        return None
 
     def __unicode__(self):
-        return self.name()
+        name = self.name()
+        if name is None:
+            return "<Unnamed>"
+        return name
 
 
 class TitlePromotion(HistorisedObject):
@@ -65,7 +71,13 @@ class Title(models.Model):
     end_date = models.DateField(null=True, blank=True)
 
     def name(self):
-        return self.names.recent().name
+        recent = self.names.recent()
+        if recent is not None:
+            return recent.name
+        return None
 
     def __unicode__(self):
-        return self.name()
+        name = self.name()
+        if name is None:
+            return "<Unnamed>"
+        return name
