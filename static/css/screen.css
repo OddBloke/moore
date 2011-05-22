@@ -11,12 +11,12 @@ body {
     color: white;
 }
 a {
-	color:#369;
+	color:white;
+	text-decoration:none;
 }
 a:hover {
 	color:#fff;
-	background:#369;
-	text-decoration:none;
+	text-decoration:underline;
 }
 h1, h2, h3 {
 	margin:.8em 0 .2em 0;
@@ -24,6 +24,9 @@ h1, h2, h3 {
     color: white;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
     text-transform: uppercase;
+}
+h2 {
+    font-size:100%;
 }
 p {
 	margin:.4em 0 .8em 0;
@@ -57,6 +60,7 @@ p {
 #header ul li {
 	margin:10px;
 	padding:0;
+    font-size:130%;
 	float:left;
 }
 /* 'widths' sub menu */
