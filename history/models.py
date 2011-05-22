@@ -1,5 +1,14 @@
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models
+
+
+class HistorisedObjectManager(models.Manager):
+
+    def recent(self):
+        try:
+            return self.get(end_date__isnull=True)
+        except ObjectDoesNotExist:
+            return self.latest()
 
 
 class HistorisedObject(models.Model):
@@ -7,6 +16,8 @@ class HistorisedObject(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
     comment = models.TextField(null=True, blank=True)
+
+    objects = HistorisedObjectManager()
 
     def clean(self):
         name = self._meta.object_name
