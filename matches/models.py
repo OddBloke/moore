@@ -101,6 +101,10 @@ class Participation(models.Model):
     participant = models.ForeignKey(WrestlingEntity)
     role = models.ForeignKey(Role)
 
+    def __unicode__(self):
+        return "%s: %s (%s)" % (self.event.card.date, self.participant.name,
+                                self.role)
+
 
 # Hack to work around http://code.djangoproject.com/ticket/13757
 @receiver(post_save, sender=Participation)
