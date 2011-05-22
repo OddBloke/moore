@@ -41,6 +41,9 @@ class CardSeries(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = "Card series"
+
 
 class Venue(models.Model):
     name = models.CharField(max_length=127)
