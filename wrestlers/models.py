@@ -50,13 +50,19 @@ class WrestlingTeam(WrestlingEntity, Group):
     pass
 
 
-class Wrestler(WrestlingEntity):
+class Wrestler(Review):
 
+    name = models.CharField(max_length=128)
+    bio = models.TextField(blank=True,null=True)
     born_when = models.DateField(null=True, blank=True)
     born_location = models.CharField(max_length=128,blank=True,null=True)
     trained_by = models.ManyToManyField('Wrestler',blank=True)
 
-class Persona(Review):
+    def __unicode__(self):
+        return self.name
+
+
+class Persona(WrestlingEntity):
 
     wrestler = models.ForeignKey(Wrestler)
     billed_name = models.CharField(max_length=128)
