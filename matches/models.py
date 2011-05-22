@@ -187,7 +187,7 @@ class Match(CardEvent):
         super(Match, self).save(*args, **kwargs)
 
     def vs_string(self):
-        return " vs. ".join([p.name for p in self.participants.all()])
+        return " vs. ".join([p.name for p in self.competitor_list])
 
     def __unicode__(self):
         return "%s: %s" % (self.card.date, self.vs_string())
