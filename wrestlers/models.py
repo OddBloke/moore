@@ -70,4 +70,4 @@ class Persona(WrestlingEntity):
     debut = models.DateField(null=True, blank=True)
 
     def __unicode__(self):
-        return self.billed_name
+        return self.name
