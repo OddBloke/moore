@@ -165,6 +165,7 @@ class Match(CardEvent):
                                null=True, blank=True)
     title = models.ForeignKey(Title, related_name="title_matches", null=True,
                               blank=True)
+    time = models.CharField(max_length=15, blank=True, null=True)
 
     def add_competitor(self, wrestling_entity):
         role = Role.objects.get(description="Competitor")
