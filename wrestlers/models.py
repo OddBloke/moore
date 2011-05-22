@@ -65,7 +65,6 @@ class Wrestler(Review):
 class Persona(WrestlingEntity):
 
     wrestler = models.ForeignKey(Wrestler)
-    billed_name = models.CharField(max_length=128)
     billed_height = models.DecimalField(null=True, blank=True,help_text="in metres",decimal_places=2,max_digits=10)
     billed_weight = models.IntegerField(null=True, blank=True,help_text="in kilograms")
     debut = models.DateField(null=True, blank=True)
