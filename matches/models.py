@@ -76,7 +76,13 @@ class Card(models.Model):
         return nxt
 
     def __unicode__(self):
-        return unicode(self.date)
+        promotion_list = [str(p) for p in self.promotion.all()]
+        elements = [unicode(self.date)]
+        if self.name:
+            elements.append(self.name)
+        if len(promotion_list) > 0:
+            elements.append("(%s)" % (", ".join(promotion_list),))
+        return " ".join(elements)
 
 
 class Role(models.Model):
@@ -126,9 +132,10 @@ class CardEvent(Review):
         super(CardEvent, self).save(*args, **kwargs)
 
     def __unicode__(self):
+        participant_list = [str(w) for w in self.participants.all()]
         return "%s #%d: %s: %s" % (self.card, self.order,
                                    self.event_type,
-                                   ", ".join(self.participants.all()))
+                                   ", ".join(participant_list))
 
 
 class MatchTypeAspect(models.Model):
