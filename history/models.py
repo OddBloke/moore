@@ -35,3 +35,4 @@ class HistorisedObject(models.Model):
     class Meta:
         abstract = True
         get_latest_by = 'end_date'
+        unique_together = (('obj', 'start_date'), ('obj', 'end_date'))
