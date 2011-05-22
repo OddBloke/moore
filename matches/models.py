@@ -195,3 +195,6 @@ class Match(CardEvent):
 
     def __unicode__(self):
         return "%s: %s" % (self.card.date, self.vs_string())
+
+    class Meta:
+        verbose_name_plural = "Matches"
