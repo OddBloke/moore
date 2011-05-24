@@ -9,6 +9,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         db.delete_column('wrestlers_group_wrestlers', 'wrestler_id')
         db.add_column('wrestlers_group_wrestlers', 'persona', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['wrestlers.Persona'], default=0), keep_default=False)
+        db.create_unique('wrestlers_group_wrestlers', ['persona_id', 'group_id'])
 
 
     def backwards(self, orm):
