@@ -65,11 +65,11 @@ class MatchAdmin(admin.ModelAdmin):
 
 admin.site.register(Card, CardAdmin)
 admin.site.register(CardEvent, CardEventAdmin)
+admin.site.register(CardSeries)
+admin.site.register(CardType)
 admin.site.register(EventType)
 admin.site.register(Match, MatchAdmin)
 admin.site.register(MatchType)
 admin.site.register(MatchTypeAspect)
 admin.site.register(Role)
-admin.site.register(CardType)
 admin.site.register(Venue)
-admin.site.register(CardSeries)
