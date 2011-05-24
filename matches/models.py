@@ -25,6 +25,14 @@ from review.models import Review
 from wrestlers.models import WrestlingEntity
 
 
+class Enum(models.Model):
+
+    description = models.CharField(max_length=255, primary_key=True)
+
+    class Meta:
+        abstract = True
+
+
 class CardType(models.Model):
     """For example PPV, House Show, TV Episode"""
     name = models.CharField(max_length=127)
@@ -86,13 +94,10 @@ class Card(models.Model):
         return " ".join(elements)
 
 
-class Role(models.Model):
+class Role(Enum):
     """A role that can be taken within a CardEvent."""
 
-    description = models.CharField(max_length=255, primary_key=True)
-
-    def __unicode__(self):
-        return self.description
+    pass
 
 
 class Participation(models.Model):
@@ -113,13 +118,10 @@ def participation_post_save_handler(instance, *args, **kwargs):
     instance.event.save()
 
 
-class EventType(models.Model):
+class EventType(Enum):
     """The type of an event (e.g. match, promo, interview)."""
 
-    description = models.CharField(max_length=127, primary_key=True)
-
-    def __unicode__(self):
-        return self.description
+    pass
 
 
 class CardEvent(Review):
@@ -143,13 +145,10 @@ class CardEvent(Review):
                                    ", ".join(participant_list))
 
 
-class MatchTypeAspect(models.Model):
+class MatchTypeAspect(Enum):
     """An aspect of a match type (e.g. falls count anywhere)."""
 
-    description = models.CharField(max_length=127, primary_key=True)
-
-    def __unicode__(self):
-        return self.description
+    pass
 
 
 class MatchType(models.Model):
@@ -162,13 +161,10 @@ class MatchType(models.Model):
         return self.description
 
 
-class WinType(models.Model):
+class WinType(Enum):
     """A way in which a match is won (e.g. pin, disqualification)."""
 
-    description = models.CharField(max_length=127, primary_key=True)
-
-    def __unicode__(self):
-        return self.description
+    pass
 
 
 class Match(CardEvent):
