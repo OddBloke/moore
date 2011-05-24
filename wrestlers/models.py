@@ -27,11 +27,7 @@ class GroupManager(models.Manager):
 
 class WrestlingEntity(Review):
 
-    name = models.CharField(max_length=128)
     bio = models.TextField(blank=True,null=True)
-
-    def __unicode__(self):
-        return self.name
 
 
 class Group(models.Model):
