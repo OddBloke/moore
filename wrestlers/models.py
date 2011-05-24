@@ -78,4 +78,4 @@ class Persona(WrestlingEntity):
         return self.billed_name
 
     def __unicode__(self):
-        return self.name
+        return self.billed_name
