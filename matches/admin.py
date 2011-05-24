@@ -19,15 +19,15 @@ from django.contrib import admin
 
 from matches.models import (Card,
                             CardEvent,
+                            CardSeries,
+                            CardType,
                             EventType,
                             Match,
                             MatchType,
                             MatchTypeAspect,
                             Participation,
                             Role,
-                            CardType,
                             Venue,
-                            CardSeries,
                            )
 
 
