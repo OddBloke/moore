@@ -42,10 +42,10 @@ class Group(models.Model):
         return self.group_name
 
     def __unicode__(self):
-        if self.group_name is not None:
+        if self.group_name is not None and self.group_name != '':
             return self.group_name
         else:
-            return ", ".join([w.name for w in self.wrestlers])
+            return " & ".join([w.name for w in self.wrestlers.all()])
 
 
 class WrestlingTeam(WrestlingEntity, Group):
