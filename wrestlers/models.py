@@ -37,6 +37,10 @@ class Group(models.Model):
     wrestlers = models.ManyToManyField("Persona")
     group_name = models.CharField(max_length=128, null=True, blank=True)
 
+    @property
+    def name(self):
+        return self.group_name
+
     def __unicode__(self):
         if self.group_name is not None:
             return self.group_name
