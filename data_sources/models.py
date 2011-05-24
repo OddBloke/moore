@@ -26,7 +26,7 @@ class DataSource(models.Model):
 class SourcingDescription(models.Model):
 
     data_source = models.ForeignKey(DataSource)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
 
 
 class Sourced(models.Model):
