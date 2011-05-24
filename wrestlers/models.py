@@ -60,7 +60,8 @@ class Group(models.Model):
 
 class WrestlingTeam(WrestlingEntity, Group):
 
-    pass
+    def __unicode__(self):
+        return super(Group, self).__unicode__(self)
 
 
 class Wrestler(Review):
