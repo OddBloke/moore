@@ -31,7 +31,7 @@ class SourcingDescription(models.Model):
 
 class Sourced(models.Model):
 
-    data_source = models.ForeignKey(SourcingDescription)
+    data_sources = models.ManyToManyField(SourcingDescription)
 
     class Meta:
         abstract = True
