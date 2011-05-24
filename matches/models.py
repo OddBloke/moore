@@ -167,6 +167,9 @@ class WinType(models.Model):
 
     description = models.CharField(max_length=127, primary_key=True)
 
+    def __unicode__(self):
+        return self.description
+
 
 class Match(CardEvent):
     """A match."""
