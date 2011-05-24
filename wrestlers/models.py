@@ -39,10 +39,13 @@ class Group(models.Model):
     objects = GroupManager()
 
     wrestlers = models.ManyToManyField("Persona")
-    name = models.CharField(max_length=128)
+    group_name = models.CharField(max_length=128, null=True, blank=True)
 
     def __unicode__(self):
-        return self.name if self.name else ", ".join([w.name for w in self.wrestlers])
+        if self.group_name is not None:
+            return self.group_name
+        else:
+            return ", ".join([w.name for w in self.wrestlers])
 
 
 class WrestlingTeam(WrestlingEntity, Group):
