@@ -69,5 +69,9 @@ class Persona(WrestlingEntity):
     billed_weight = models.IntegerField(null=True, blank=True,help_text="in kilograms")
     debut = models.DateField(null=True, blank=True)
 
+    @property
+    def name(self):
+        return self.billed_name
+
     def __unicode__(self):
         return self.name
