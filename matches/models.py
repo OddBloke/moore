@@ -20,6 +20,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from data_sources.models import Sourced
 from promotions.models import Promotion, Title
 from review.models import Review
 from wrestlers.models import WrestlingEntity
@@ -66,7 +67,7 @@ class Venue(models.Model):
         return self.name
 
 
-class Card(models.Model):
+class Card(Sourced):
     """Represents a particular event for a wrestling promotion."""
 
     name = models.CharField(max_length=127, null=True, blank=True)
@@ -127,7 +128,7 @@ class EventType(Enum):
     pass
 
 
-class CardEvent(Review):
+class CardEvent(Review, Sourced):
     """A particular event within a card."""
 
     order = models.IntegerField()
