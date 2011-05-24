@@ -27,11 +27,7 @@ class GroupManager(models.Manager):
 
 class WrestlingEntity(Review):
 
-    name = models.CharField(max_length=128)
     bio = models.TextField(blank=True,null=True)
-
-    def __unicode__(self):
-        return self.name
 
 
 class Group(models.Model):
@@ -39,10 +35,17 @@ class Group(models.Model):
     objects = GroupManager()
 
     wrestlers = models.ManyToManyField("Persona")
-    name = models.CharField(max_length=128)
+    group_name = models.CharField(max_length=128, null=True, blank=True)
+
+    @property
+    def name(self):
+        return self.group_name
 
     def __unicode__(self):
-        return self.name if self.name else ", ".join([w.name for w in self.wrestlers])
+        if self.group_name is not None:
+            return self.group_name
+        else:
+            return ", ".join([w.name for w in self.wrestlers])
 
 
 class WrestlingTeam(WrestlingEntity, Group):
@@ -64,10 +67,15 @@ class Wrestler(Review):
 
 class Persona(WrestlingEntity):
 
+    billed_name = models.CharField(max_length=128)
     wrestler = models.ForeignKey(Wrestler)
     billed_height = models.DecimalField(null=True, blank=True,help_text="in metres",decimal_places=2,max_digits=10)
     billed_weight = models.IntegerField(null=True, blank=True,help_text="in kilograms")
     debut = models.DateField(null=True, blank=True)
 
+    @property
+    def name(self):
+        return self.billed_name
+
     def __unicode__(self):
-        return self.name
+        return self.billed_name
