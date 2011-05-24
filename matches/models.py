@@ -29,6 +29,9 @@ class Enum(models.Model):
 
     description = models.CharField(max_length=255, primary_key=True)
 
+    def __unicode__(self):
+        return self.description
+
     class Meta:
         abstract = True
 
