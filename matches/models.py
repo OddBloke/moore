@@ -135,6 +135,7 @@ class CardEvent(Review):
     participants = models.ManyToManyField(WrestlingEntity,
                                           through=Participation)
     event_type = models.ForeignKey(EventType)
+    description = models.TextField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if self.order is None:
