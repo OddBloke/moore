@@ -22,11 +22,17 @@ class DataSource(models.Model):
 
     name = models.CharField(max_length=255, primary_key=True)
 
+    def __unicode__(self):
+        return self.name
+
 
 class SourcingDescription(models.Model):
 
     data_source = models.ForeignKey(DataSource)
     description = models.TextField(null=True, blank=True)
+
+    def __unicode__(self):
+        return self.data_source.name
 
 
 class Sourced(models.Model):
