@@ -29,6 +29,15 @@ class WrestlingEntity(Review):
 
     bio = models.TextField(blank=True,null=True)
 
+    def child(self):
+        try:
+            return self.persona
+        except Persona.DoesNotExist:
+            return self.wrestlingteam
+
+    def __unicode__(self):
+        return unicode(self.child())
+
 
 class Group(models.Model):
 
