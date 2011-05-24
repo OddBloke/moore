@@ -17,10 +17,11 @@
 
 from django.db import models
 
+from data_sources.models import Sourced
 from history.models import HistorisedObject
 
 
-class PromotionName(HistorisedObject):
+class PromotionName(HistorisedObject, Sourced):
 
     obj = models.ForeignKey("Promotion", related_name="names")
     name = models.CharField(max_length=255)
@@ -47,7 +48,7 @@ class Promotion(models.Model):
         return name
 
 
-class TitlePromotion(HistorisedObject):
+class TitlePromotion(HistorisedObject, Sourced):
 
     obj = models.ForeignKey("Title", related_name="promotions")
     promotion = models.ForeignKey(Promotion)
@@ -56,7 +57,7 @@ class TitlePromotion(HistorisedObject):
         return unicode(self.promotion)
 
 
-class TitleName(HistorisedObject):
+class TitleName(HistorisedObject, Sourced):
 
     obj = models.ForeignKey("Title", related_name="names")
     name = models.CharField(max_length=255)
