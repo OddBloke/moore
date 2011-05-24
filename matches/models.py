@@ -197,6 +197,11 @@ class Match(CardEvent):
             if not self.winner in self.competitor_list:
                 raise ValidationError("%s is not a competitor in the match."
                                         % (self.winner,))
+            if self.win_type is None:
+                raise ValidationError("The winner must have won somehow.")
+        if self.win_type is not None and self.winner is None:
+            raise ValidationError("With no winner, how can there be a win"
+                                  " type?")
 
     def save(self, *args, **kwargs):
         self.clean()
