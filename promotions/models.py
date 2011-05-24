@@ -53,7 +53,7 @@ class TitlePromotion(HistorisedObject):
     promotion = models.ForeignKey(Promotion)
 
     def __unicode__(self):
-        return self.promotion
+        return unicode(self.promotion)
 
 
 class TitleName(HistorisedObject):
