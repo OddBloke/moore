@@ -155,7 +155,7 @@ class MatchType(models.Model):
     """A type of match, including various aspects."""
 
     description = models.CharField(max_length=127)
-    aspects = models.ManyToManyField(MatchTypeAspect)
+    aspects = models.ManyToManyField(MatchTypeAspect, blank=True)
 
     def __unicode__(self):
         return self.description
