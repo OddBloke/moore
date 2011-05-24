@@ -31,7 +31,7 @@ class SourcingDescription(models.Model):
 
 class Sourced(models.Model):
 
-    data_sources = models.ManyToManyField(SourcingDescription)
+    data_sources = models.ManyToManyField(SourcingDescription, blank=True)
 
     class Meta:
         abstract = True
