@@ -45,7 +45,8 @@ class Group(models.Model):
         if self.group_name is not None and self.group_name != '':
             return self.group_name
         else:
-            return " & ".join([w.name for w in self.wrestlers.all()])
+            names = [unicode(w) for w in self.wrestlers.all()]
+            return "%s & %s" % (', '.join(names[:-1]), names[-1])
 
 
 class WrestlingTeam(WrestlingEntity, Group):
