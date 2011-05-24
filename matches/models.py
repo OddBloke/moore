@@ -162,12 +162,19 @@ class MatchType(models.Model):
         return self.description
 
 
+class WinType(models.Model):
+    """A way in which a match is won (e.g. pin, disqualification)."""
+
+    description = models.CharField(max_length=127, primary_key=True)
+
+
 class Match(CardEvent):
     """A match."""
 
     match_type = models.ForeignKey(MatchType)
     winner = models.ForeignKey(WrestlingEntity, related_name="won_matches",
                                null=True, blank=True)
+    win_type = models.ForeignKey(WinType, null=True, blank=True)
     title = models.ForeignKey(Title, related_name="title_matches", null=True,
                               blank=True)
     time = models.CharField(max_length=15, blank=True, null=True)
