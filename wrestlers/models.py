@@ -16,6 +16,8 @@
 #
 
 from django.db import models
+
+from data_sources.models import Sourced
 from review.models import Review
 
 
@@ -25,7 +27,7 @@ class GroupManager(models.Manager):
         return self.filter(wrestlers=Wrestler.objects.filter(id__in=[w.id for w in l]))
 
 
-class WrestlingEntity(Review):
+class WrestlingEntity(Review, Sourced):
 
     name = models.CharField(max_length=128)
     bio = models.TextField(blank=True,null=True)
@@ -50,7 +52,7 @@ class WrestlingTeam(WrestlingEntity, Group):
     pass
 
 
-class Wrestler(Review):
+class Wrestler(Review, Sourced):
 
     name = models.CharField(max_length=128)
     bio = models.TextField(blank=True,null=True)
