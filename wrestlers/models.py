@@ -38,7 +38,7 @@ class Group(models.Model):
 
     objects = GroupManager()
 
-    wrestlers = models.ManyToManyField("Wrestler")
+    wrestlers = models.ManyToManyField("Persona")
     name = models.CharField(max_length=128)
 
     def __unicode__(self):
