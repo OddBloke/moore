@@ -18,10 +18,11 @@
 from datetime import datetime
 
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from matches.models import Card, Match
-from wrestlers.models import Wrestler
+from wrestlers.models import Persona
 
 
 class MatchTestCase(TestCase):
@@ -30,9 +31,9 @@ class MatchTestCase(TestCase):
 
     def setUp(self):
         self.card = Card.objects.get(id=1)
-        self.w1 = Wrestler.objects.get(id=1)
-        self.w2 = Wrestler.objects.get(id=2)
-        self.w3 = Wrestler.objects.get(id=3)
+        self.w1 = Persona.objects.get(id=1)
+        self.w2 = Persona.objects.get(id=2)
+        self.w3 = Persona.objects.get(id=3)
 
     def _create_two_person_match(self, order_num=None):
         m = Match(card=self.card)
@@ -74,7 +75,7 @@ class MatchTest(MatchTestCase):
     def test_winner_in_match(self):
         m = self._create_two_person_match()
         m.winner = self.w3
-        m.save()
+        self.assertRaises(ValidationError, m.save)
         self.assertEqual(0, len(Match.objects.filter(winner=self.w3)))
 
 

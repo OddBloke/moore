@@ -54,37 +54,37 @@
  {
   "pk": 1,
   "model": "wrestlers.wrestlingentity",
-  "fields": {
-   "name": "w1"
-  }
+  "fields": {}
  },
  {
   "pk": 2,
   "model": "wrestlers.wrestlingentity",
-  "fields": {
-   "name": "w2"
-  }
+  "fields": {}
  },
  {
   "pk": 3,
   "model": "wrestlers.wrestlingentity",
-  "fields": {
-   "name": "w3"
-  }
+  "fields": {}
  },
  {
   "pk": 1,
-  "model": "wrestlers.wrestler",
-  "fields": {}
+  "model": "wrestlers.persona",
+  "fields": {
+   "billed_name": "w1"
+  }
  },
  {
   "pk": 2,
-  "model": "wrestlers.wrestler",
-  "fields": {}
+  "model": "wrestlers.persona",
+  "fields": {
+   "billed_name": "w2"
+  }
  },
  {
   "pk": 3,
-  "model": "wrestlers.wrestler",
-  "fields": {}
+  "model": "wrestlers.persona",
+  "fields": {
+   "billed_name": "w3"
+  }
  }
 ]
