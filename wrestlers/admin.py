@@ -17,7 +17,7 @@
 
 from django.contrib import admin
 
-from wrestlers.models import Group, WrestlingTeam, Wrestler, Persona
+from wrestlers.models import Group, WrestlingTeam, Individual, Persona
 
 
 admin.site.register(Group)
@@ -26,7 +26,7 @@ admin.site.register(Group)
 admin.site.register(WrestlingTeam)
 
 
-admin.site.register(Wrestler)
+admin.site.register(Individual)
 
 
 admin.site.register(Persona)

@@ -19,8 +19,8 @@ from django.db import models
 
 class GroupManager(models.Manager):
 
-    def filter_wrestlers(self, l):
-        return self.filter(wrestlers=Wrestler.objects.filter(id__in=[w.id for w in l]))
+    def filter_members(self, l):
+        return self.filter(members=Individual.objects.filter(id__in=[w.id for w in l]))
 
 
 class WrestlingEntity(models.Model):
@@ -32,7 +32,7 @@ class Group(WrestlingEntity):
 
     objects = GroupManager()
 
-    wrestlers = models.ManyToManyField("Persona")
+    members = models.ManyToManyField("Persona")
     group_name = models.CharField(max_length=128, null=True, blank=True)
 
     @property
@@ -47,13 +47,13 @@ class Group(WrestlingEntity):
             return "%s & %s" % (', '.join(names[:-1]), names[-1])
 
 
-class Wrestler(models.Model):
+class Individual(models.Model):
 
     name = models.CharField(max_length=128)
     bio = models.TextField(blank=True,null=True)
     born_when = models.DateField(null=True, blank=True)
     born_location = models.CharField(max_length=128,blank=True,null=True)
-    trained_by = models.ManyToManyField('Wrestler',blank=True)
+    trained_by = models.ManyToManyField('Individual',blank=True)
 
     def __unicode__(self):
         return self.name
@@ -62,7 +62,7 @@ class Wrestler(models.Model):
 class Persona(WrestlingEntity):
 
     billed_name = models.CharField(max_length=128)
-    wrestler = models.ForeignKey(Wrestler)
+    individual = models.ForeignKey(Individual)
     billed_height = models.DecimalField(null=True, blank=True,help_text="in metres",decimal_places=2,max_digits=10)
     billed_weight = models.IntegerField(null=True, blank=True,help_text="in kilograms")
     debut = models.DateField(null=True, blank=True)
