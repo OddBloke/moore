@@ -79,30 +79,6 @@ class MatchTest(MatchTestCase):
         self.assertEqual(0, len(Match.objects.filter(winner=self.w3)))
 
 
-class TestReview(MatchTestCase):
-
-    def test_update_time(self):
-        before = datetime.now()
-        m = self._create_two_person_match()
-        after = datetime.now()
-        self.assertTrue(before < m.updated_at < after)
-
-    def test_update_time_changed_on_m2m(self):
-        m = self._create_two_person_match()
-        before_time = m.updated_at
-        m.add_competitor(self.w3)
-        self.assertTrue(before_time < m.updated_at)
-
-    def test_reviewed(self):
-        m = self._create_two_person_match()
-        self.assertFalse(m.reviewed)
-        m.reviewed_by = User.objects.get(id=1)
-        m.save()
-        self.assertTrue(m.reviewed, "%s != %s" % (m.reviewed_at, m.updated_at))
-        m.add_competitor(self.w3)
-        self.assertFalse(m.reviewed)
-
-
 class CaseTest(MatchTestCase):
 
     def test_explicit_next_order_number(self):

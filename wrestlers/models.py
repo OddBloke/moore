@@ -16,8 +16,6 @@
 #
 
 from django.db import models
-from review.models import Review
-
 
 class GroupManager(models.Manager):
 
@@ -25,7 +23,7 @@ class GroupManager(models.Manager):
         return self.filter(wrestlers=Wrestler.objects.filter(id__in=[w.id for w in l]))
 
 
-class WrestlingEntity(Review):
+class WrestlingEntity(models.Model):
 
     bio = models.TextField(blank=True,null=True)
 
@@ -54,7 +52,7 @@ class WrestlingTeam(WrestlingEntity, Group):
     pass
 
 
-class Wrestler(Review):
+class Wrestler(models.Model):
 
     name = models.CharField(max_length=128)
     bio = models.TextField(blank=True,null=True)

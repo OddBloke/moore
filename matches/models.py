@@ -21,7 +21,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from promotions.models import Promotion, Title
-from review.models import Review
 from wrestlers.models import WrestlingEntity
 
 
@@ -127,7 +126,7 @@ class EventType(Enum):
     pass
 
 
-class CardEvent(Review):
+class CardEvent(models.Model):
     """A particular event within a card."""
 
     order = models.IntegerField()
