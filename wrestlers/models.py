@@ -20,7 +20,8 @@ from django.db import models
 class GroupManager(models.Manager):
 
     def filter_members(self, l):
-        return self.filter(members=Individual.objects.filter(id__in=[w.id for w in l]))
+        """Broken, due to hierachy"""
+        return self.filter(members=WrestlingEntity.objects.filter(id__in=[w.id for w in l]))
 
 
 class WrestlingEntity(models.Model):
@@ -32,7 +33,7 @@ class Group(WrestlingEntity):
 
     objects = GroupManager()
 
-    members = models.ManyToManyField("Persona")
+    members = models.ManyToManyField("WrestlingEntity")
     group_name = models.CharField(max_length=128, null=True, blank=True)
 
     @property
