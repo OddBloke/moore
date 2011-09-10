@@ -102,12 +102,18 @@ class Role(Enum):
     pass
 
 
+class ParticipationRole(models.Model):
+    
+    role = models.ForeignKey(Role)
+    entity = models.ForeignKey(WrestlingEntity)
+    participation = models.ForeignKey('Participation')
+
+
+
 class Participation(models.Model):
     """The role which some WrestlingEntitys take within a CardEvent."""
 
-    event = models.ForeignKey("CardEvent")
-    participants = models.ManyToManyField(WrestlingEntity)
-    role = models.ForeignKey(Role)
+    participants = models.ManyToManyField(WrestlingEntity, through=ParticipationRole)
 
     def __unicode__(self):
         return "%s: %s (%s)" % (self.event.card.date, [p.name for p in self.participants],
@@ -131,8 +137,7 @@ class CardEvent(models.Model):
 
     order = models.IntegerField()
     card = models.ForeignKey(Card)
-    participants = models.ManyToManyField(WrestlingEntity,
-                                          through=Participation)
+    participants = models.ManyToManyField(Participation)
     event_type = models.ForeignKey(EventType)
     description = models.TextField(blank=True, null=True)
 

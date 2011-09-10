@@ -33,7 +33,7 @@ class Group(WrestlingEntity):
 
     objects = GroupManager()
 
-    members = models.ManyToManyField("WrestlingEntity")
+    members = models.ManyToManyField("WrestlingEntity", related_name="groups")
     group_name = models.CharField(max_length=128, null=True, blank=True)
 
     @property
