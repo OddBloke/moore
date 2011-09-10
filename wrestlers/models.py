@@ -28,7 +28,7 @@ class WrestlingEntity(models.Model):
     bio = models.TextField(blank=True,null=True)
 
 
-class Group(models.Model):
+class Group(WrestlingEntity):
 
     objects = GroupManager()
 
@@ -45,11 +45,6 @@ class Group(models.Model):
         else:
             names = [unicode(w) for w in self.wrestlers.all()]
             return "%s & %s" % (', '.join(names[:-1]), names[-1])
-
-
-class WrestlingTeam(WrestlingEntity, Group):
-
-    pass
 
 
 class Wrestler(models.Model):

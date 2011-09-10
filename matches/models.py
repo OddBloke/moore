@@ -103,14 +103,14 @@ class Role(Enum):
 
 
 class Participation(models.Model):
-    """The role which a WrestlingEntity takes within a CardEvent."""
+    """The role which some WrestlingEntitys take within a CardEvent."""
 
     event = models.ForeignKey("CardEvent")
-    participant = models.ForeignKey(WrestlingEntity)
+    participants = models.ManyToManyField(WrestlingEntity)
     role = models.ForeignKey(Role)
 
     def __unicode__(self):
-        return "%s: %s (%s)" % (self.event.card.date, self.participant.name,
+        return "%s: %s (%s)" % (self.event.card.date, [p.name for p in self.participants],
                                 self.role)
 
 
