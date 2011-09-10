@@ -56,10 +56,24 @@ class CardSeries(models.Model):
         verbose_name_plural = "Card series"
 
 
+class Country(models.Model):
+    name = models.CharField(max_length=127)
+
+    def __unicode__(self):
+        return self.name
+
+
+class City(models.Model):
+    name = models.CharField(max_length=127)
+    country = models.ForeignKey(Country)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Venue(models.Model):
     name = models.CharField(max_length=127)
-    country = models.CharField(max_length=127)
-    city = models.CharField(max_length=127)
+    city = models.ForeignKey(City)
 
     def __unicode__(self):
         return self.name
