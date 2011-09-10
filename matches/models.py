@@ -86,11 +86,11 @@ class Card(models.Model):
     date = models.DateField()
     promotion = models.ManyToManyField(Promotion)
     card_type = models.ForeignKey(CardType)
-    live_attendance = models.IntegerField(default=0)
-    broadcast_viewership = models.IntegerField(default=0)
+    live_attendance = models.IntegerField(default=0, null=True, blank=True)
+    broadcast_viewership = models.IntegerField(default=0, null=True, blank=True)
 
-    venue = models.ForeignKey(Venue,null=True,blank=True)
-    series = models.ForeignKey(CardSeries,null=True,blank=True)
+    venue = models.ForeignKey(Venue, null=True, blank=True)
+    series = models.ForeignKey(CardSeries, null=True, blank=True)
 
     def next_order_number(self):
         nxt = 1
