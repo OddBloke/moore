@@ -17,13 +17,10 @@
 
 from django.contrib import admin
 
-from wrestlers.models import Group, WrestlingTeam, Individual, Persona
+from wrestlers.models import Group, Individual, Persona
 
 
 admin.site.register(Group)
-
-
-admin.site.register(WrestlingTeam)
 
 
 admin.site.register(Individual)
